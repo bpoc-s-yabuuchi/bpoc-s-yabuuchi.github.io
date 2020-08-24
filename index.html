@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" charset="utf-8">
+
+    <!-- base css -->
+    <link rel="stylesheet" href="css/mediconter.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/menubar.css">
+
+    <!-- base js -->
+    <script src="js/script.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery.nice-select.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/modal.js"></script>
+
+    <!-- fullcalendar -->
+    <link rel='stylesheet' href='css/main.css' />
+    <script src='js/main.js'></script>
+    <script src='js/locales-all.js'></script>
+    <!-- rrule lib -->
+    <script src='./js/rrule.js'></script>
+    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+    <script src='./js/fullcalendar-rrule-main.global.js'></script>
+
+    <!-- datepicker -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <script src="js/datepicker.js"></script>
+    <script src="js/datepicker.jp.js"></script>
+
+    <title>mediconter</title>
+</head>
+
+<body class="schedule">
+    <header>
+        <img src="タイトル.png" width="250px">
+        <!-- メニューバー -->
+        <div id="fixed-menu">
+            <div id="fixed-menu-contents">
+                <div class="panel-wrap">
+                    <span class="space"></span>
+                </div>
+                <div class="panel-wrap">
+                    <a href="#" class="panel-btn1 irai">依頼状況</a>
+                </div>
+                <div class="panel-wrap">
+                    <a href="#" class="panel-btn2">スケジュール</a>
+                </div>
+                <div class="panel-wrap">
+                    <a href="#" class="panel-btn">管理者メニュー</a>
+                    <!--  吹き出しの内容 -->
+                    <div class="panel1" id="panel1">
+                        <div class="box">
+                            <span class="font">≫&nbsp;クリニック</span>
+                            <hr class="boxborder" style="border:0;border-top:1px dotted #AFABAB;" width="86px">
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;一覧</a><br>
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;登録</a>
+                        </div>
+                        <div class="box box-center">
+                            <span class="font">≫&nbsp;施設</span>
+                            <hr class="boxborder" style="border:0;border-top:1px dotted #AFABAB;" width="50px">
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;一覧</a><br>
+                            <a href="mediconter.html" class="fontcolor">&nbsp;&nbsp;&nbsp;登録</a>
+                        </div>
+                        <div class="box box-right">
+                            <span class="font">≫&nbsp;ユーザー</span>
+                            <hr class="boxborder" style="border:0;border-top:1px dotted #AFABAB;" width="75px">
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;医師一覧</a><br>
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;看護師一覧</a><br>
+                            <a href="#" class="fontcolor">&nbsp;&nbsp;&nbsp;登録</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-wrap">
+                    <a href="#" class="panel-btn">アカウント</a>
+                    <!--  吹き出しの内容 -->
+                    <div class="panel2" id="panel2">
+                        <div style="text-align: center;" class="height"><span class="fontsize">訪問看護ステーションナーシングみなみ<br>
+                                看護師&nbsp;&nbsp;管理職<br></span>
+                            <span class="namefont">今井唯香</span></div><br>
+                        <hr class="borderstyle">
+                        <div class="font">
+                            <img class="password" src="kirikae.png" width="13"
+                                height="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;センターモードへ切り替え<br>
+                            <img class="password" src="password.png" width="13"
+                                height="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;パスワード変更<br>
+                            <img class="password" src="logout.png" width="13"
+                                height="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ログアウト</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="body scheduleBody">
+        <!-- <div class="first-position" id="first-position"> -->
+        <!-- スライドメニュー -->
+        <!-- スライドメニュー表示・非表示用トグルスイッチ -->
+        <input type="checkbox" id="navTgl">
+        <label for="navTgl" class="open" data-a="1">≡</label>
+        <label for="navTgl" class="close"></label>
+        <!-- スライドメニュー中身 -->
+        <div class="scheduleSearch menu" id="scheduleSearch">
+            <!-- <nav class="menu"> -->
+            <span id="kensaku_header" style="color:#767171; font-size:18px">検索条件</span>
+            <!-- クリニック選択 -->
+            <div class="sideSelectContent" style="margin-top: 10px">
+                <div style="margin-bottom: 5px">クリニック</div>
+                <div class="dropdown">
+                    <div class="select">
+                        <span class="selectText" id="allClinic">すべて</span>
+                    </div>
+                    <input type="hidden" name="clinic">
+                    <ul class="dropdownMenu">
+                        <li id="li1">すべて</li>
+                        <li id="li2">○○クリニック</li>
+                        <li id="li3">××クリニック</li>
+                        <li id="li4">△△クリニック</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 施設選択 -->
+            <div class="sideSelectContent" style="margin-top: 10px">
+                <div style="margin-bottom: 5px">施設</div>
+                <div class="dropdown">
+                    <div class="select">
+                        <span class="selectText" id="allFacility">すべて</span>
+                    </div>
+                    <input type="hidden" name="lo">
+                    <ul class="dropdownMenu">
+                        <li id="li1">すべて</li>
+                        <li id="li2">▽▽老人ホーム</li>
+                        <li id="li3">▲▲老人ホーム</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 医師選択 -->
+            <div class="sideSelectContent" style="margin-top: 10px">
+                <div style="margin-bottom: 5px">医師</div>
+                <input type="checkbox" id="ishiAll" name="ishiAll" value="医師" onclick="ishiAllcheck()"><label
+                    for="ishiAll">すべて</label>
+                <hr
+                    style="border:none;border-top:dashed 3px #AFABAB;height:2px;width: 90%;text-align:left;margin-left: 0px;">
+                <div>あ～た</div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師1" id="ishi1"><label
+                            for="ishi1">医師1</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師2" id="ishi2"><label
+                            for="ishi2">医師2</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師3" id="ishi3"><label
+                            for="ishi3">医師3</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師2" id="ishi4"><label
+                            for="ishi4">医師2</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師5" id="ishi5"><label
+                            for="ishi5">医師5</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師6" id="ishi6"><label
+                            for="ishi6">医師6</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師7" id="ishi7"><label
+                            for="ishi7">医師7</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師8" id="ishi8"><label
+                            for="ishi8">医師8</label></span>
+                </div>
+
+                <div>な～わ</div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師9" id="ishi9"><label
+                            for="ishi9">医師9</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師10" id="ishi10"><label
+                            for="ishi10">医師10</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師11" id="ishi11"><label
+                            for="ishi11">医師11</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師12" id="ishi12"><label
+                            for="ishi12">医師12</label></span>
+                </div>
+
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師13" id="ishi13"><label
+                            for="ishi13">医師13</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師14" id="ishi14"><label
+                            for="ishi14">医師14</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師15" id="ishi15"><label
+                            for="ishi15">医師15</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師16" id="ishi16"><label
+                            for="ishi16">医師16</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師17" id="ishi17"><label
+                            for="ishi17">医師17</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師18" id="ishi18"><label
+                            for="ishi18">医師18</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師19" id="ishi19"><label
+                            for="ishi19">医師19</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師20" id="ishi20"><label
+                            for="ishi20">医師20</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師21" id="ishi21"><label
+                            for="ishi21">医師21</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師22" id="ishi22"><label
+                            for="ishi22">医師22</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師23" id="ishi23"><label
+                            for="ishi23">医師23</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師24" id="ishi24"><label
+                            for="ishi24">医師24</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師25" id="ishi25"><label
+                            for="ishi25">医師25</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師26" id="ishi26"><label
+                            for="ishi26">医師26</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師27" id="ishi27"><label
+                            for="ishi27">医師27</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師28" id="ishi28"><label
+                            for="ishi28">医師28</label></span>
+                </div>
+                <div class="ishiCheck">
+                    <span class="checkl"><input type="checkbox" name="ishi" value="医師29" id="ishi29"><label
+                            for="ishi29">医師29</label></span>
+                    <span class="checkr"><input type="checkbox" name="ishi" value="医師30" id="ishi30"><label
+                            for="ishi30">医師30</label></span>
+                </div>
+            </div>
+            <!-- スライドメニュー検索ボタン -->
+            <div class="scheduleSearchButton">
+                <div class="search"></div>
+            </div>
+        <!-- </nav> -->
+        </div>
+    </div>
+
+        <!-- fullcalendar(大きいカレンダー) -->
+    <!-- <div class="second-position"> -->
+        <div class="scheduleRegion">
+            <div id='calendar'></div>
+            <span class="buttonposition1">
+                <button class="cancelButton" id="resetButton">リセット</button>
+            </span>
+            <span class="bottonposition2">
+                <button class="confirmButton" id="kakuteiButton" type="submit">確定</button>
+            </span>
+        </div>
+    <!-- </div> -->
+
+        <!-- スケジュール詳細モーダルウインドウ -->
+        <div class="modal jsModal">
+            <div class="modalBg jsModalClose"></div>
+            <div class="modalContent draggableModal">
+                <!-- モーダルウインドウタイトルなど -->
+                <span>スケジュール登録</span>
+                <a class="jsModalClose" id="modalCloseEvent">×</a>
+                <div class="draggableHandle"></div> <!-- ドラッグするためのハンドル -->
+
+                <!-- <form> -->
+                <!-- モーダルウインドウ中身 -->
+                <div class="scrollContent">
+                    <!-- イベントタイトル入力欄 -->
+                    <div class="display">
+                        <div style="margin-bottom: 5px;">タイトル</div>
+                        <input type="text" id="titleText" placeholder="タイトルを入力してください" style="width: 360px; box-shadow: 0 0 2px rgb(204, 204, 204); margin-left: 2px;">
+                    </div>
+
+                    <!-- カテゴリー選択ラジオボタン -->
+                    <div class="display">
+                        <div style="margin-bottom: 5px;">カテゴリー</div>
+                        <label><input type="radio" name="categoryRadio" value="plan"
+                                onclick="checkCategory()">予定</label>
+                        <label><input type="radio" name="categoryRadio" value="vacation"
+                                onclick="checkCategory()">休暇</label>
+                        <label><input type="radio" name="categoryRadio" value="memo"
+                                onclick="checkCategory()">メモ</label>
+                    </div>
+
+                    <!-- 医師選択ドロップボックス -->
+                    <div class="display doctor">
+                        <div style="margin-bottom: 5px;">該当医師</div>
+                        <div class="dropdown">
+                            <div class="select">
+                                <span class="selectText" id="name">選択してください</span>
+                            </div>
+                            <input type="hidden" name="name">
+                            <ul class="dropdownMenu">
+                                <li id="医師1">医師1</li>
+                                <li id="医師2">医師2</li>
+                                <li id="医師3">医師3</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 日時選択 -->
+                    <div class="display date">
+                        <div style="margin-bottom: 5px;">日時</div>
+                        <!-- 開始日時カレンダー -->
+                        <input type='text' id="jsDatePickerStart" class="datepickerHere calendar" data-language="jp"
+                            readonly>
+                        <!-- 開始時刻ドロップダウンリスト -->
+                        <div class="dropdownSwitchActive" id="dropdownTimeStart">
+                            <div class="select">
+                                <span class="selectText" id="startTime">選択してください</span>
+                            </div>
+                            <input type="hidden" name="startTime">
+                            <ul class="dropdownMenu startTime">
+                                <li id="00:00">00:00</li>
+                                <li id="00:15">00:15</li>
+                                <li id="00:30">00:30</li>
+                                <li id="00:45">00:45</li>
+                                <li id="01:00">01:00</li>
+                                <li id="01:15">01:15</li>
+                                <li id="01:30">01:30</li>
+                                <li id="01:45">01:45</li>
+                                <li id="02:00">02:00</li>
+                                <li id="02:15">02:15</li>
+                                <li id="02:30">02:30</li>
+                                <li id="02:45">02:45</li>
+                                <li id="03:00">03:00</li>
+                                <li id="03:15">03:15</li>
+                                <li id="03:30">03:30</li>
+                                <li id="03:45">03:45</li>
+                                <li id="04:00">04:00</li>
+                                <li id="04:15">04:15</li>
+                                <li id="04:30">04:30</li>
+                                <li id="04:45">04:45</li>
+                                <li id="05:00">05:00</li>
+                                <li id="05:15">05:15</li>
+                                <li id="05:30">05:30</li>
+                                <li id="05:45">05:45</li>
+                                <li id="06:00">06:00</li>
+                                <li id="06:15">06:15</li>
+                                <li id="06:30">06:30</li>
+                                <li id="06:45">06:45</li>
+                                <li id="07:00">07:00</li>
+                                <li id="07:15">07:15</li>
+                                <li id="07:30">07:30</li>
+                                <li id="07:45">07:45</li>
+                                <li id="08:00">08:00</li>
+                                <li id="08:15">08:15</li>
+                                <li id="08:30">08:30</li>
+                                <li id="08:45">08:45</li>
+                                <li id="09:00">09:00</li>
+                                <li id="09:15">09:15</li>
+                                <li id="09:30">09:30</li>
+                                <li id="09:45">09:45</li>
+                                <li id="10:00">10:00</li>
+                                <li id="10:15">10:15</li>
+                                <li id="10:30">10:30</li>
+                                <li id="10:45">10:45</li>
+                                <li id="11:00">11:00</li>
+                                <li id="11:15">11:15</li>
+                                <li id="11:30">11:30</li>
+                                <li id="11:45">11:45</li>
+                                <li id="12:00">12:00</li>
+                                <li id="12:15">12:15</li>
+                                <li id="12:30">12:30</li>
+                                <li id="12:45">12:45</li>
+                                <li id="13:00">13:00</li>
+                                <li id="13:15">13:15</li>
+                                <li id="13:30">13:30</li>
+                                <li id="13:45">13:45</li>
+                                <li id="14:00">14:00</li>
+                                <li id="14:15">14:15</li>
+                                <li id="14:30">14:30</li>
+                                <li id="14:45">14:45</li>
+                                <li id="15:00">15:00</li>
+                                <li id="15:15">15:15</li>
+                                <li id="15:30">15:30</li>
+                                <li id="15:45">15:45</li>
+                                <li id="16:00">16:00</li>
+                                <li id="16:15">16:15</li>
+                                <li id="16:30">16:30</li>
+                                <li id="16:45">16:45</li>
+                                <li id="17:00">17:00</li>
+                                <li id="17:15">17:15</li>
+                                <li id="17:30">17:30</li>
+                                <li id="17:45">17:45</li>
+                                <li id="18:00">18:00</li>
+                                <li id="18:15">18:15</li>
+                                <li id="18:30">18:30</li>
+                                <li id="18:45">18:45</li>
+                                <li id="19:00">19:00</li>
+                                <li id="19:15">19:15</li>
+                                <li id="19:30">19:30</li>
+                                <li id="19:45">19:45</li>
+                                <li id="20:00">20:00</li>
+                                <li id="20:15">20:15</li>
+                                <li id="20:30">20:30</li>
+                                <li id="20:45">20:45</li>
+                                <li id="21:00">21:00</li>
+                                <li id="21:15">21:15</li>
+                                <li id="21:30">21:30</li>
+                                <li id="21:45">21:45</li>
+                                <li id="22:00">22:00</li>
+                                <li id="22:15">22:15</li>
+                                <li id="22:30">22:30</li>
+                                <li id="22:45">22:45</li>
+                                <li id="23:00">23:00</li>
+                                <li id="23:15">23:15</li>
+                                <li id="23:30">23:30</li>
+                                <li id="23:45">23:45</li>
+                            </ul>
+                        </div>
+                        ～
+                        <!-- 終了日時カレンダー -->
+                        <input type='text' id="jsDatePickerEnd" class="datepickerHere calendar" data-language="jp"
+                            readonly>
+                        <!-- 終了時刻ドロップダウンリスト -->
+                        <div class="dropdownSwitchActive" id="dropdownTimeEnd">
+                            <div class="select">
+                                <span class="selectText" id="endTime">選択してください</span>
+                            </div>
+                            <input type="hidden" name="endTime">
+                            <ul class="dropdownMenu endTime">
+                                <li id="00:00">00:00</li>
+                                <li id="00:15">00:15</li>
+                                <li id="00:30">00:30</li>
+                                <li id="00:45">00:45</li>
+                                <li id="01:00">01:00</li>
+                                <li id="01:15">01:15</li>
+                                <li id="01:30">01:30</li>
+                                <li id="01:45">01:45</li>
+                                <li id="02:00">02:00</li>
+                                <li id="02:15">02:15</li>
+                                <li id="02:30">02:30</li>
+                                <li id="02:45">02:45</li>
+                                <li id="03:00">03:00</li>
+                                <li id="03:15">03:15</li>
+                                <li id="03:30">03:30</li>
+                                <li id="03:45">03:45</li>
+                                <li id="04:00">04:00</li>
+                                <li id="04:15">04:15</li>
+                                <li id="04:30">04:30</li>
+                                <li id="04:45">04:45</li>
+                                <li id="05:00">05:00</li>
+                                <li id="05:15">05:15</li>
+                                <li id="05:30">05:30</li>
+                                <li id="05:45">05:45</li>
+                                <li id="06:00">06:00</li>
+                                <li id="06:15">06:15</li>
+                                <li id="06:30">06:30</li>
+                                <li id="06:45">06:45</li>
+                                <li id="07:00">07:00</li>
+                                <li id="07:15">07:15</li>
+                                <li id="07:30">07:30</li>
+                                <li id="07:45">07:45</li>
+                                <li id="08:00">08:00</li>
+                                <li id="08:15">08:15</li>
+                                <li id="08:30">08:30</li>
+                                <li id="08:45">08:45</li>
+                                <li id="09:00">09:00</li>
+                                <li id="09:15">09:15</li>
+                                <li id="09:30">09:30</li>
+                                <li id="09:45">09:45</li>
+                                <li id="10:00">10:00</li>
+                                <li id="10:15">10:15</li>
+                                <li id="10:30">10:30</li>
+                                <li id="10:45">10:45</li>
+                                <li id="11:00">11:00</li>
+                                <li id="11:15">11:15</li>
+                                <li id="11:30">11:30</li>
+                                <li id="11:45">11:45</li>
+                                <li id="12:00">12:00</li>
+                                <li id="12:15">12:15</li>
+                                <li id="12:30">12:30</li>
+                                <li id="12:45">12:45</li>
+                                <li id="13:00">13:00</li>
+                                <li id="13:15">13:15</li>
+                                <li id="13:30">13:30</li>
+                                <li id="13:45">13:45</li>
+                                <li id="14:00">14:00</li>
+                                <li id="14:15">14:15</li>
+                                <li id="14:30">14:30</li>
+                                <li id="14:45">14:45</li>
+                                <li id="15:00">15:00</li>
+                                <li id="15:15">15:15</li>
+                                <li id="15:30">15:30</li>
+                                <li id="15:45">15:45</li>
+                                <li id="16:00">16:00</li>
+                                <li id="16:15">16:15</li>
+                                <li id="16:30">16:30</li>
+                                <li id="16:45">16:45</li>
+                                <li id="17:00">17:00</li>
+                                <li id="17:15">17:15</li>
+                                <li id="17:30">17:30</li>
+                                <li id="17:45">17:45</li>
+                                <li id="18:00">18:00</li>
+                                <li id="18:15">18:15</li>
+                                <li id="18:30">18:30</li>
+                                <li id="18:45">18:45</li>
+                                <li id="19:00">19:00</li>
+                                <li id="19:15">19:15</li>
+                                <li id="19:30">19:30</li>
+                                <li id="19:45">19:45</li>
+                                <li id="20:00">20:00</li>
+                                <li id="20:15">20:15</li>
+                                <li id="20:30">20:30</li>
+                                <li id="20:45">20:45</li>
+                                <li id="21:00">21:00</li>
+                                <li id="21:15">21:15</li>
+                                <li id="21:30">21:30</li>
+                                <li id="21:45">21:45</li>
+                                <li id="22:00">22:00</li>
+                                <li id="22:15">22:15</li>
+                                <li id="22:30">22:30</li>
+                                <li id="22:45">22:45</li>
+                                <li id="23:00">23:00</li>
+                                <li id="23:15">23:15</li>
+                                <li id="23:30">23:30</li>
+                                <li id="23:45">23:45</li>
+                            </ul>
+                        </div>
+
+                        <!-- 終日チェックボックス -->
+                        <div style="margin-top: 8px;">
+                            <label><input type="checkbox" name="allDay" value="終日" id="allDay" style="transform: scale(1);" onclick="allDayCheck()">終日</label>
+                        </div>
+                    </div>
+
+                    <!-- 往診場所選択 -->
+                    <div class="display place">
+                        <div style="margin-bottom: 5px;">往診場所</div>
+                        <label><input type="radio" name="radioplace" value="select" checked="true"
+                                onclick="switch_radio()">指定のクリニックから選ぶ</label>
+                        <label><input type="radio" name="radioplace" value="input"
+                                onclick="switch_radio()">直接往診場所名を入力する</label>
+                        <label><input type="radio" name="radioplace" value="unselect"
+                                onclick="switch_radio()">未指定</label>
+                        <div class="display" style="margin-top: 7px;">
+                            <!-- 「指定のクリニックから選ぶ」が選択されている場合 -->
+                            <div class="switchSelect">
+                                <div class="dropdown">
+                                    <div class="select">
+                                        <span class="selectText" id="oushinClinic">選択してください</span>
+                                    </div>
+                                    <input type="hidden" name="clinic">
+                                    <ul class="dropdownMenu">
+                                        <li id="li1">○○クリニック</li>
+                                        <li id="li2">△△クリニック</li>
+                                        <li id="li3">▽▽クリニック</li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown">
+                                    <div class="select">
+                                        <span class="selectText" id="oushinHome">選択してください</span>
+                                    </div>
+                                    <input type="hidden" name="home">
+                                    <ul class="dropdownMenu">
+                                        <li id="li1">○○老人ホーム</li>
+                                        <li id="li2">△△老人ホーム</li>
+                                        <li id="li3">▽▽老人ホーム</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 「直接往診場所名を入力する」が選択されている場合 -->
+                            <div class="switchInput">
+                                <div id="pac-container">
+                                <input type="text" id="pac-input" placeholder="入力してください" autocomplete="off"
+                                    style="height: 18px; width: 360px; box-shadow: 0 0 2px rgb(204, 204, 204); margin-left: 2px;">
+                                </div>
+                                <!-- GoogleApiのオートコンプリート機能を使用 -->
+                                <script>
+                                  function initMap() {
+                                      var input = document.getElementById('pac-input');
+                                      var autocomplete = new google.maps.places.Autocomplete(input);
+                                  }
+                                </script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClkn4lDqWza7YG-dYY5lLAdQls78moKz8&libraries=places&callback=initMap" defer>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 所要時間 -->
+                    <div class="display" style="display: none;">
+                        <div style="margin-bottom: 5px;">所要時間</div>
+                        <input type="number" name="spendTime" id="spendTime" value="30" min="0" step="10"
+                            style="width: 60px;">分
+                    </div>
+
+                    <!-- 繰り返し項目 -->
+                    <div class="display repeatSelect">
+                        <div style="margin-bottom: 5px;">繰り返し</div>
+                        <div class="dropdown" id="chooseRepeat">
+                            <div class="select">
+                                <span class="selectText" id="kurikaeshi">選択してください</span>
+                            </div>
+                            <input type="hidden" name="kurikaeshi" value="選択してください">
+                            <ul class="dropdownMenu youbiCustom">
+                                <li id="繰り返しなし">繰り返しなし</li>
+                                <li id="毎日">毎日</li>
+                                <li id="毎週○曜日">毎週○曜日</li>
+                                <li id="毎月第1○曜日">毎月第1○曜日</li>
+                                <li id="毎月第1第3○曜日">毎月第1第3○曜日</li>
+                                <li id="毎月第2第4○曜日">毎月第2第4○曜日</li>
+                                <li id="毎週平日(月～金曜日)">毎週平日(月～金曜日)</li>
+                                <li id="カスタム1" style="display: none;"></li>
+                                <li id="カスタム" class="jsModalOpenRepeat">カスタム</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 日時選択（「メモ」ラジオボタン選択時） -->
+                    <div class="display memoDate">
+                        <div style="margin-bottom: 5px;">日時</div>
+                        <input type='text' id="jsDatePickerMemoStart" class="datepickerHere calendar"
+                            data-language="jp" readonly> ～ <input type='text' id="jsDatePickerMemoEnd"
+                            class="datepickerHere calendar" data-language="jp" readonly>
+                    </div>
+
+                    <!-- メモ用テキストボックス -->
+                    <div class="display memo">
+                        <div style="margin-bottom: 5px;">説明</div>
+                        <textarea name="message" cols="68" rows="7" placeholder="ここで書いた内容は医師側のアプリのスケジュールにも表示されます。"
+                            class="message" id="message"></textarea>
+                    </div>
+                </div>
+
+                <!-- モーダルウインドウ 更新・削除ボタン -->
+                <div class="center">
+                    <span class="confirmButtonUnActive" id="koshinButton" date-active="false">更新</span>
+                    <span class="cancelButton" id="sakujoButton" style="display:none">削除</span>
+                </div>
+                <!-- </form> -->
+            </div>
+        </div>
+
+        <!-- 繰り返しカスタム用モーダルウインドウ -->
+        <div class="modalRepeat jsModalRepeat">
+            <div class="modalBgRepeat jsModalCloseRepeat"></div>
+            <!-- モーダル中身 -->
+            <div id="modalContentRepeat">
+                <!-- タイトル -->
+                <span>カスタムの繰り返し</span>
+                <a class="jsModalCloseRepeat" id="modalCloseEventRepeat">×</a>
+                <hr style="width: 100%;">
+
+                <!-- 繰り返しの間隔 -->
+                <div class="display">
+                    <div style="margin-bottom: 5px;">繰り返す間隔</div>
+                    <input type="number" name="repeatSpan" id="repeatSpan" value="1" min="1" step="1"
+                        style="width: 40px;">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selectText" id="per">週間ごと</span>
+                        </div>
+                        <input type="hidden" name="per" value="週間ごと">
+                        <ul class="dropdownMenu changeRepeat">
+                            <li id="日ごと">日ごと</li>
+                            <li id="週間ごと">週間ごと</li>
+                            <li id="か月ごと">か月ごと</li>
+                            <li id="年ごと">年ごと</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 曜日選択（繰り返しの間隔が週の時のみ表示） -->
+                <div class="display switchWeekly">
+                    <div style="margin-bottom: 5px;">曜日</div>
+                    <span class="youbiButton" id="buttonSun" data-flag="0">日</span>
+                    <span class="youbiButton" id="buttonMon" data-flag="0">月</span>
+                    <span class="youbiButton" id="buttonTue" data-flag="0">火</span>
+                    <span class="youbiButton" id="buttonWed" data-flag="0">水</span>
+                    <span class="youbiButton" id="buttonThu" data-flag="0">木</span>
+                    <span class="youbiButton" id="buttonFri" data-flag="0">金</span>
+                    <span class="youbiButton" id="buttonSat" data-flag="0">土</span>
+                </div>
+
+                <!-- 選択日の日付or曜日（繰り返しの間隔が月の時のみ表示） -->
+                <div class="display switchMonthly" style="display: none;">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selectText" id="perMonth"></span>
+                        </div>
+                        <input type="hidden" name="perMonth" value="毎月○日">
+                        <ul class="dropdownMenu">
+                            <li id="毎月○日">毎月○日</li>
+                            <li id="毎月第1○曜日">毎月第1○曜日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 繰り返しの終了選択 -->
+                <div class="display">
+                    <div style="margin-bottom: 5px;">終了日</div>
+                    <div style="margin-bottom: 10px;"><input type="radio" name="endDate" value="noRepeat" id="noRepeat"
+                            checked="true"><label for="noRepeat">なし</label></div>
+                    <div style="margin-bottom: 10px;">
+                        <input type="radio" name="endDate" value="endDay" id="endDay"><label class="inputTextRepeat"
+                            for="endDay">終了日：</label>
+                        <input type='text' id="jsDatePickerRepeat" class="datepickerHere calendarRepeat"
+                            data-language="jp" readonly>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <input type="radio" name="endDate" value="repeat" id="repeat"><label class="inputTextRepeat"
+                            for="repeat">繰り返し：</label>
+                        <input type="number" name="repeatCount" id="repeatCount" value="13" min="1" step="1"
+                            style="width: 45px;">回
+                    </div>
+                </div>
+
+                <!-- モーダル完了・キャンセルボタン -->
+                <div class="center">
+                    <span class="confirmButton" id="kanryoButton" onclick="custom()">完了</span>
+                    <span class="cancelButton jsModalCloseRepeat" id="cancelButton">キャンセル</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- データ保存用div -->
+        <section>
+            <div style="visibility: none;" id="year"></div><!-- 選択日付の開始年避難用(数字) -->
+            <div style="visibility: none;" id="month"></div><!-- 選択日付の開始月避難用(数字) -->
+            <div style="visibility: none;" id="day"></div><!-- 選択日付の開始日避難用(漢字) -->
+            <div style="visibility: none;" id="dayOfWeek"></div><!-- 選択日付の曜日避難用(数字) -->
+            <div style="visibility: none;" id="youbi"></div><!-- 選択日付の曜日避難用(漢字) -->
+            <div style="visibility: none;" id="byWeekDay"></div><!-- 選択日付の曜日避難用(英) -->
+            <div style="visibility: none;" id="weekNo"></div><!-- 選択日付の週番号避難用 -->
+
+            <div style="visibility: none;" id="endYear"></div><!-- 選択日付の終了年避難用(数字) -->
+            <div style="visibility: none;" id="endMonth"></div><!-- 選択日付の終了月避難用(数字) -->
+            <div style="visibility: none;" id="endDay"></div><!-- 選択日付の終了日避難用(漢字) -->
+        
+            <div style="visibility: none;" id="perMonthName"></div><!-- カスタム選択繰り返し名フラグ避難用 -->
+            <div style="visibility: none;" id="interval"></div><!-- カスタム選択頻度フラグ避難用 -->
+            <div style="visibility: none;" id="youbiflag"></div><!-- カスタム選択曜日フラグ避難用 -->
+        </section>
+    <!-- </main> -->
+
+    <!-- 埋め込みスクリプト -->
+    <script>
+        // スライドメニュー挙動
+        $(function () {
+            // スライドメニューをクリックした時にスライドメニューを元の位置に戻さない
+            $('#first-position').on('click', function (event) {
+                event.stopPropagation();
+            });
+            // スライドメニュー外をクリックした時にスライドメニューを元の位置に戻す
+            $(document).on('click', function (e) {
+                if (e.target.id !== 'first-position') {
+                    // もしチェックが入っていたら
+                    if ($('input[name="navTgl"]').prop('checked')) {
+
+                        // チェックを外す
+                        $('input[name="navTgl"]').prop('checked', false);
+                        // カレンダー幅を元に戻す
+                        $("#calendar").css({ transform: '' });
+                        $("#calendar").css('margin-right', '');
+                        $("#resetButton").css('margin-left', '');
+                        $(".buttonposition1").css('width', '');
+                    } else {
+                        // 何もしない
+                        event.stopPropagation();
+                    }
+                }
+            });
+        });
+        // スライドメニューを表示させたら発動
+        // スライドメニューを表示させたら発動
+        $('input[name="navTgl"]').change(function () {
+
+            // もしチェックが入ったら
+            if ($(this).prop('checked')) {
+
+                // カレンダーの幅を縮小する
+                $("#calendar").css({ transform: 'scaleX(0.8)' });
+                $("#calendar").css('margin-right', '-32px');
+                $("#resetButton").css('margin-left', '330px');
+                $(".buttonposition1").css('width', '81%');
+
+            } else {
+                // カレンダーの幅を元に戻す                
+                $("#calendar").css({ transform: '' });
+                $("#calendar").css('margin-right', '');
+                $("#resetButton").css('margin-left', '');
+                $(".buttonposition1").css('width', '');
+            }
+
+        });
+    </script>
+
+    <script>
+        // モーダルダイアログをドラッグで操作可能にする
+        $(".draggableModal").draggable({
+            cursor: "move",
+            handle: ".draggableHandle"
+        });
+
+        // ドロップダウンリストの処理
+        $('.dropdown').click(function () {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropdownMenu').slideToggle(300);
+        });
+        $('.dropdown').focusout(function () {
+            $(this).removeClass('active');
+            $(this).find('.dropdownMenu').slideUp(300);
+        });
+        $('.dropdown .dropdownMenu li').click(function () {
+            $(this).parents('.dropdown').find('span').text($(this).text());
+            $(this).parents('.dropdown').find('span').css('color', '#000');
+            $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+        });
+        // 非活性化可能なドロップダウンリストの処理
+        $('.dropdownSwitchActive').click(function () {
+            if($("#allDay").prop("checked") != true){
+                $(this).attr('tabindex', 1).focus();
+                $(this).toggleClass('active');
+                $(this).find('.dropdownMenu').slideToggle(300);
+            }
+        });
+        $('.dropdownSwitchActive').focusout(function () {
+            $(this).removeClass('active');
+            $(this).find('.dropdownMenu').slideUp(300);
+        });
+        $('.dropdownSwitchActive .dropdownMenu li').click(function () {
+            $(this).parents('.dropdownSwitchActive').find('span').text($(this).text());
+            $(this).parents('.dropdownSwitchActive').find('span').css('color', '#000');
+            $(this).parents('.dropdownSwitchActive').find('input').attr('value', $(this).attr('id'));
+        });
+        // 繰り返しカスタム繰り返し頻度ドロップダウンリスト変更時の処理
+        $('.dropdown .changeRepeat li').click(function () {
+            if ($(this).attr('id') == '日ごと') {
+                $('.switchWeekly').css("display", "none");
+                $('.switchMonthly').css("display", "none");
+                $('#modalContentRepeat').css("height", "280px");
+            } else if ($(this).attr('id') == '週間ごと') {
+                $('.switchWeekly').css("display", "block");
+                $('.switchMonthly').css("display", "none");
+                $('#modalContentRepeat').css("height", "350px");
+            } else if ($(this).attr('id') == 'か月ごと') {
+                $('.switchWeekly').css("display", "none");
+                $('.switchMonthly').css("display", "block");
+                $('#modalContentRepeat').css("height", "330px");
+            } else if ($(this).attr('id') == '年ごと') {
+                $('.switchWeekly').css("display", "none");
+                $('.switchMonthly').css("display", "none");
+                $('#modalContentRepeat').css("height", "280px");
+            }
+        });
+
+        // 管理者メニューをクリックしたら吹き出しを表示する
+        $(function () {
+            $(".panel-btn").click(function () {
+                var clickPanel = $("+.panel1", this);
+                clickPanel.toggle();
+                $(".panel1").not(clickPanel).slideUp(0);
+                $(".panel1:visible").prev().css("background", "#A1D6E3");
+                $(".panel1:hidden").prev().css("background", "#A1D6E3");
+                return false;
+            });
+        });
+        // アカウントをクリックしたら吹き出しを表示する
+        $(function () {
+            $(".panel-btn").click(function () {
+                var clickPanel = $("+.panel2", this);
+                clickPanel.toggle();
+                $(".panel2").not(clickPanel).slideUp(0);
+                $(".panel2:visible").prev().css("background", "#A1D6E3");
+                $(".panel2:hidden").prev().css("background", "#A1D6E3");
+                return false;
+            });
+        });
+        // メニューにマウスを乗せたら発動
+        $(function () {
+            $(".panel-btn").hover(function () {
+                // メニューにマウスを乗せたら色が変わる
+                $(this).css('background', '#D2ECF2');
+
+                // ここにはメニューからマウスを離したときの動作を記述
+            }, function () {
+                // メニューからマウスを離すと元の色に戻る
+                $(this).css('background', '');
+            });
+            $(".panel-btn1").hover(function () {
+                // メニューにマウスを乗せたら色が変わる
+                $(this).css('background', '#D2ECF2');
+
+                // ここにはメニューからマウスを離したときの動作を記述
+            }, function () {
+                // メニューからマウスを離すと元の色に戻る
+                $(this).css('background', '');
+            });
+            $(".panel-btn2").hover(function () {
+                // メニューにマウスを乗せたら色が変わる
+                $(this).css('background', '#D2ECF2');
+
+                // ここにはメニューからマウスを離したときの動作を記述
+            }, function () {
+                // メニューからマウスを離すと元の色に戻る
+                $(this).css('background', '');
+            });
+        });
+        // 吹き出しが出ているときにマウスをクリックした場合1
+        $(function () {
+            // panel1をクリックした時にpanel1を非表示にしない
+            $('#panel1').on('click', function (event) {
+                event.stopPropagation();
+            });
+
+            // panel1外をクリックした際panel1を非表示にする
+            $(document).on('click', function (e) {
+                if (e.target.id !== 'panel1') {
+                    $('#panel1').hide();
+                }
+            });
+        });
+        // 吹き出しが出ているときにマウスをクリックした場合2
+        $(function () {
+            // panel2をクリックした時にpanel2を非表示にしない
+            $('#panel2').on('click', function (event) {
+                event.stopPropagation();
+            });
+
+            // panel2外をクリックした際panel2を非表示にする
+            $(document).on('click', function (e) {
+                if (e.target.id !== 'panel2') {
+                    $('#panel2').hide();
+                }
+            });
+        });
+
+        // チェックボックスにチェックを入れた時の処理
+        $(function () {
+            // 1. 「全選択」する
+            $('#all').on('click', function () {
+                $("input[name='doctor']").prop('checked', this.checked);
+            });
+            // 2. 「全選択」以外のチェックボックスがクリックされたら、
+            $("input[name='doctor']").on('click', function () {
+                if ($('#alldoctor :checked').length == $('#alldoctor :input').length) {
+                    // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
+                    $('#all').prop('checked', true);
+                } else {
+                    // 1つでもチェックが入っていたら、「全選択」 = checked
+                    $('#all').prop('checked', false);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
