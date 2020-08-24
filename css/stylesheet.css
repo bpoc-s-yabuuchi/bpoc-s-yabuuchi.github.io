@@ -1,0 +1,1470 @@
+.body{
+  margin: 0px;
+  color: #AFABAB;
+  font-family:"Meiryo UI";
+}
+body{
+  margin: 0px;
+}
+/* @media screen and (max-width: 1500px) {
+  body{
+    width: 1500px;
+  }
+} */
+/*****ヘッダー*****/
+header{
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+/* .panel-wrap{
+  position: relative;
+  float: left;
+  padding: 0;
+  border-right: 2px solid #fff;
+} */
+.headerInfo{
+  display: flex;
+  height: 70px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.headerLogo{
+  flex-grow: 1;
+  margin-left: 20px;
+}
+.userName{
+  margin-top: 20px;
+}
+/*****nav*****/
+nav{
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+  background: #A1D6E3;
+  display: block;
+}
+nav .menucontents li:hover ul {
+  display: block;
+}
+nav .menucontents {
+  margin: 0px;
+  font-size: 0;
+  background-color: #A1D6E3;
+}
+nav .menucontents li{
+  width: 130px;
+  display: inline-block;
+  list-style-type: none;
+  position: relative;
+  border-left: 3px solid white;
+  font-size: 15px;
+}
+nav .menucontents li:last-child{
+  border-right: 3px solid white;
+}
+nav .menucontents a {
+  background-color: #A1D6E3;
+  color: white;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+nav .menucontents a:hover {
+   background-color: #D2ECF2;
+   color: white;
+}
+.restartlist{
+  border-left: none;
+}
+.menucontents .current a{
+   background-color: #70B2C2;
+}
+.menu .submenu{
+  visibility: hidden;
+  display: block;
+  width: 160px;
+  background-color: #70B2C2;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 40%;
+  left: 50%;
+  margin-left: -80px;
+}
+.menu .submenu::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.menu .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+     opacity: 0;
+  }
+  to {
+     opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+     opacity: 0;
+  }
+  to {
+     opacity: 1;
+  }
+}
+/****メイン*****/
+main{
+   clear: both;
+}
+/*****フッター*****/
+footer{
+   clear: both;
+}
+.back {
+margin:0 auto; padding: 8px; border:1px solid #EEEEEE;
+background-color:#FAFAFA;
+color: #AFABAB;
+font-size: 0.9em;
+font-family:"Meiryo UI";
+}
+.back#oushinIraiBack{
+width:455px;
+height:120%;
+}
+.back#ishiTorokuBack{
+width:45%;
+height:120%;
+margin-bottom: 40px
+}
+.headline{
+color: #767171;
+}
+.radio{
+color: black;
+margin-bottom: 13px;
+}
+.confirmButton{
+border-style: none;
+background-color: #70B2C2;
+color:  #fff;
+padding: 8px 32px;
+border-radius: 5px;
+font-size: 1.1em;
+cursor: pointer;
+}
+.confirmButtonUnActive{
+  border-style: none;
+  background-color: #AFABAB;
+  color:  #fff;
+  padding: 8px 32px;
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+.confirmButton:focus {
+outline-color: white;
+}
+.confirmButton:hover{
+background-color: #8ed1e2;
+}
+.cancelButton{
+  border-style: none;
+  background-color: #AFABAB;
+  color:  #fff;
+  padding: 8px 32px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.cancelButton:focus {
+outline-color: white;
+}
+.cancelButton:hover{
+  background-color: #c9c6c6;
+}
+.center{
+text-align:center;
+}
+.bold{
+font-weight: bold;
+}
+.midashi{
+font-size: 18px;
+text-decoration: underline;
+}
+/* #jsDatePicker:focus {
+outline: none;
+} */
+.selectText:focus{
+outline: none;
+}
+#select
+textarea:focus{
+outline: none;
+}
+.question{
+margin-bottom: -4.5px;
+}
+.selectText{
+color: #bdbaba; 
+}  
+span.errorText {
+ font-size: 12px;
+ font-weight: normal;
+ color: #FF4040;
+ display: inline-block; 
+ margin: 0;
+ width: 220px;
+ } 
+ span.errorText1 {
+ font-size: 12px;
+ font-weight: normal;
+ color: #FF4040;
+ display: inline-block; 
+ } 
+ .errortext{
+ margin-bottom: -12px;
+ }
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+  from {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+  opacity: 1;
+  transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+  opacity: 1;
+  }
+
+  to {
+  opacity: 0;
+  }
+}
+.cpTooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: linear-gradient(transparent 60%, #ffffff 60%);
+}
+.cpTooltip .cpTooltipText {
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 50px;
+  visibility: hidden;
+  /*width: auto;*/
+  white-space: nowrap;
+  padding: 0.3em 0.5em;
+  transition: opacity 1s;
+  text-align: center;
+  opacity: 0;
+  color: #ffffff;
+  border-radius: 6px;
+  background-color: #70B2C2;
+}
+.cpTooltip .cpTooltipText::after {
+  position: absolute;
+  top: 40%;
+  right: 100%;
+  margin-left: -5px;
+  content: ' ';
+  border: 5px solid transparent;
+  border-right-color: #70B2C2;
+}
+.cpTooltip:hover .cpTooltipText {
+  visibility: visible;
+  opacity: 1;
+}
+/*Styling Selectbox*/
+.container {
+  width: 300px;
+  text-align:left;
+  margin-bottom: 15px;
+  margin-top: -13px;
+  } 
+.dropdown {
+outline: none;
+width: 200px;
+display: inline-block;
+background-color: #fff;
+border-radius: 2px;
+box-shadow: 0 0 2px rgb(204, 204, 204);
+transition: all .5s ease;
+position: relative;
+font-size: 14px;
+color: #474747;
+height: 100%;
+text-align: left;
+margin-left: 2px;
+}
+.dropdown .select {
+cursor: pointer;
+display: block;
+padding: 5px 0px 5px 10px;
+background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,4) 50%), linear-gradient(135deg, rgba(0,0,0,4) 50%, transparent 50%);
+background-size: 5px 5px, 5px 5px;
+background-position: calc(100% - 14.7px) 50%, calc(100% - 10px) 50%;
+background-repeat: no-repeat;
+}
+.dropdown .select > i {
+font-size: 13px;
+color: #888;
+cursor: pointer;
+transition: all .3s ease-in-out;
+float: right;
+line-height: 20px
+}
+.dropdown:hover {
+box-shadow: 0 0 4px rgb(204, 204, 204)
+}
+.dropdown:active {
+background-color: #f8f8f8
+}
+.dropdown.active:hover,
+.dropdown.active {
+box-shadow: 0 0 4px rgb(204, 204, 204);
+border-radius: 2px 2px 0 0;
+background-color: #f8f8f8
+}
+.dropdown.active .select > i {
+transform: rotate(-90deg)
+}
+#chooseRepeat{
+  width: 500px;
+  height: 120%;
+}
+/*下向きドロップダウンリスト*/
+.dropdown .dropdownMenu {
+position: absolute;
+background-color: #fff;
+width: 100%;
+left: 0;
+margin-top: 1px;
+box-shadow: 0 1px 2px rgb(204, 204, 204);
+border-radius: 0 1px 2px 2px;
+overflow: hidden;
+display: none;
+max-height: 144px;
+overflow-y: auto;
+z-index: 9
+} 
+.dropdown .dropdownMenu li {
+  padding: 5px 0px 5px 10px;
+  transition: all .2s ease-in-out;
+  cursor: pointer
+} 
+.dropdown .dropdownMenu {
+  padding: 0;
+  list-style: none
+}
+.dropdown .dropdownMenu li:hover {
+  background-color: #f2f2f2
+}
+.dropdown .dropdownMenu li:active {
+  background-color: #e2e2e2
+}
+
+/*上向きドロップダウンリスト*/
+.dropdown .overMenu {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  margin-top: -175px;
+  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  border-radius: 0 1px 2px 2px;
+  overflow: hidden;
+  display: none;
+  max-height: 144px;
+  overflow-y: auto;
+  z-index: 9
+} 
+.dropdown .overMenu li {
+padding: 5px 0px 5px 10px;
+transition: all .2s ease-in-out;
+cursor: pointer
+} 
+.dropdown .overMenu {
+padding: 0;
+list-style: none
+}
+.dropdown .overMenu li:hover {
+background-color: #f2f2f2
+}
+.dropdown .overMenu li:active {
+background-color: #e2e2e2
+}
+/* 非活性可能なドロップダウン */
+.dropdownSwitchActive {
+  outline: none;
+  width: 200px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  transition: all .5s ease;
+  position: relative;
+  font-size: 14px;
+  color: #474747;
+  height: 100%;
+  text-align: left;
+  margin-left: 2px;
+  }
+  .dropdownSwitchActive .select {
+  cursor: pointer;
+  display: block;
+  padding: 5px 0px 5px 10px;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,4) 50%), linear-gradient(135deg, rgba(0,0,0,4) 50%, transparent 50%);
+  background-size: 5px 5px, 5px 5px;
+  background-position: calc(100% - 14.7px) 50%, calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  }
+  .dropdownSwitchActive .select > i {
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  float: right;
+  line-height: 20px
+  }
+  .dropdownSwitchActive:hover {
+  box-shadow: 0 0 4px rgb(204, 204, 204)
+  }
+  .dropdownSwitchActive:active {
+  background-color: #f8f8f8
+  }
+  .dropdownSwitchActive.active:hover,
+  .dropdownSwitchActive.active {
+  box-shadow: 0 0 4px rgb(204, 204, 204);
+  border-radius: 2px 2px 0 0;
+  background-color: #f8f8f8
+  }
+  .dropdownSwitchActive.active .select > i {
+  transform: rotate(-90deg)
+  }
+  .dropdownSwitchActive .dropdownMenu {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0 1px 2px 2px;
+    overflow: hidden;
+    display: none;
+    max-height: 144px;
+    overflow-y: auto;
+    z-index: 9
+    } 
+    .dropdownSwitchActive .dropdownMenu li {
+      padding: 5px 0px 5px 10px;
+      transition: all .2s ease-in-out;
+      cursor: pointer
+    } 
+    .dropdownSwitchActive .dropdownMenu {
+      padding: 0;
+      list-style: none
+    }
+    .dropdownSwitchActive .dropdownMenu li:hover {
+      background-color: #f2f2f2
+    }
+    .dropdownSwitchActive .dropdownMenu li:active {
+      background-color: #e2e2e2
+    }
+    
+  #dropdownTimeStart{
+    width: 100px;
+  }
+  #dropdownTimeEnd{
+    width: 100px;
+  }
+/* datepickerカレンダー */
+.calendar{
+font-family:"Meiryo UI";
+border: solid 0px #e2e2e2;
+border-radius: 2px;
+box-shadow: 0 0 2px rgb(204, 204, 204);
+padding: 5px;
+width: 190px;
+cursor: pointer;
+margin-left: 2px;
+}
+.message{
+padding: 5px;
+margin-left: 2px;
+font-family: "Meiryo UI";
+outline: none;
+box-shadow: 0 0 2px rgb(204, 204, 204);
+border: solid 0px #e2e2e2;
+}
+
+input{
+outline: none;
+font-family:"Meiryo UI";
+border: solid 0px #e2e2e2;
+border-radius: 2px;
+padding: 5px;
+margin-right: 10px;
+}
+.necessaliry{
+background-color: orange;
+color: white;
+border-radius: 3px;
+font-size: 10px;
+padding: 1px 5px 2px 5px;
+vertical-align: baseline;
+}
+.form{
+margin-top: -10px;
+width: 100%;
+}
+.formNameText{
+width: 200px;
+}
+input::placeholder{
+color: #AFABAB;
+} 
+textarea::placeholder{
+color: #AFABAB;
+} 
+#fab {/*円の部分*/
+display: inline-block;
+position: relative;
+width: 32px;/*幅*/
+height: 32px;/*高さ*/
+background: rgba(204, 204, 204,5);/*背景色*/
+text-align: center;/*中央寄せ*/
+border-radius: 50%;/*角丸く*/
+transition: .3s;/*滑らかな動きに*/
+box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);/*影*/
+}
+#fab:hover {/*ホバー時*/
+box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+}
+#fab:before, #fab:after {
+display: block;
+content: '';
+background-color: white;
+border-radius: 10px;
+position: absolute;
+width: 25px;
+height: 5px;
+top: 14px;
+left: 3px;
+}
+#fab:before {
+width: 5px;
+height: 25px;
+top: 4px;
+left: 13px;
+}
+.formContact{
+width: 300px;
+}
+.formAddress{
+width: 450px;
+}
+.color{
+display: inline-block;
+}
+.sp-preview{
+position: relative;
+ }
+.sp-preview-inner, .sp-alpha-inner, .sp-thumb-inner {
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+}
+textarea{
+resize: none;
+}
+.percolor{
+margin-top: 1px;
+}
+#personality{
+width: 50px;
+padding: 1px 5px 2px 5px;
+font-family:"Meiryo UI";
+}
+#contents {
+z-index: 0;
+font-size: 16px;
+vertical-align: bottom;
+}
+.page-txt {
+margin: 30px 0 0;
+height: 2000px;
+}
+#modalOpen {
+color: #cc0000;
+}
+#modalClose{
+cursor: pointer;
+float: right;
+margin: 10px 20px 15px 0px;
+}
+#modalOuter {
+  display: none;
+  width: 1200px;
+  height: 570px;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #666666;
+  position:fixed;
+  z-index: 2;
+  border-radius: 20px;
+}
+
+#modalMain {
+  overflow:auto;
+  display: none;
+  width: 1170px;
+  height: 510px;
+  background-color: #ffffff;
+  z-index: 3;
+  position:fixed;
+  margin: 0;
+  padding: 0;
+}
+#modalBackground {
+  display:none;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+#modalText{
+  float: left;
+  font-size: 20px;
+  margin: 10px 0px 20px 20px;
+}
+
+.cpActab {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  color: #ffffff;
+}
+.cpActab .check {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.cpActab .cpActab-content {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 0.35s;
+  transition: max-height 0.35s;
+  color: #333333;
+  background: #ffffff;
+}
+.actabLabel {
+  font-weight: bold;
+  line-height: 3;
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  cursor: pointer;
+  margin: 0 0 1px 0;
+  background: #A1D6E3;
+}
+.cpActab-content{
+  border-left: solid 1px #A1D6E3;
+  border-right: solid 1px #A1D6E3;
+}
+.cpActab .cpActab-content p {
+  margin: 1em;
+}
+/* :checked */
+.cpActab input ~ .cpActab-content {
+  max-height: 20em;
+}
+.cpActab input:checked ~ .cpActab-content {
+  max-height: 0em;
+}
+.cpActab:last-child input ~ .cpActab-content {
+  border-bottom: solid 1px #A1D6E3;
+}
+.cpActab:last-child input:checked ~ .cpActab-content {
+  border-bottom: solid 0px #A1D6E3;
+}
+/* Icon */
+.cpActab label::after {
+  line-height: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  text-align: center;
+}
+.acordion_font{
+  color: #7F7F7F;
+}
+.check + label::after {
+  content: '▼';
+}
+.check:checked + label::after {
+  transform: rotate(180deg);
+}
+.acordion{
+  margin-bottom: 10px;
+}
+.display{
+  margin-bottom: 20px;
+}
+.display1{
+  display: inline-block;
+  width: 270px;
+  margin-left: 13px;
+}
+.display2{
+  display: inline-block;
+  width: 270px;
+}
+.display3{
+  display: inline-block;
+  width: 270px;
+}
+.display4{
+  display: inline-block;
+  width: 270px;
+  margin-left: 10px;
+}
+form {
+  background-color: white;
+  width: 100%;
+  margin: 5px;
+  padding: 10px;
+  min-width: 400px;
+  max-width: 95%;
+  border-radius: 3px;
+}
+.qualities {
+position: relative;
+flex: 1;
+}
+.qualities input {
+width: 100%;
+height: 25px;
+opacity: 0;
+}
+.qualities label {
+position: absolute;
+top: 0; left: 0;
+color: #b6b6b6;
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+pointer-events: none;
+border-right: 1px solid #b6b6b6;
+}
+.qualities:last-child label {
+border-right: 0;
+}
+.qualities input:checked + label {
+background: #A1D6E3;
+font-weight: 500;
+color: #fff;
+border-radius: 7px;
+}
+.defaultValue{
+background-color: #E8F6F8;
+}
+.qtable{
+border-collapse: collapse;
+border: none;
+}
+.qtable tr{
+border-bottom: solid 1px #f2f2f2; 
+}
+.qtable tr:last-child{
+border-bottom: none;
+}
+.qtable td{
+width: 80px;
+padding: 0px 2px 0px 2px;
+border-right: solid 1px #f2f2f2;
+}
+.qtable td:last-child{
+border-right: none;
+}
+.qtable th{
+border-right: solid 1px #f2f2f2; 
+}
+.qtable th:last-child{
+border-right: none; 
+}
+.tableLabel th{
+text-align: left;
+vertical-align: top;
+width:200px;
+}
+.font{
+display: inline-block;
+}
+.skillTag{
+color: #fff;
+background-color: #A1D6E3;
+padding: 5px 10px;
+margin: 2px;
+font-size: 16px;
+border-radius: 4px;
+line-height: 1;
+display: inline-block;
+}
+.destroy{
+display: inline;
+color: #767171;
+margin-left: 5px;
+cursor: pointer;
+}
+.skillForm{
+background-color: #fff;
+border: solid 0.3px #666666;
+display: inline-block;
+width: 94%;
+height: auto;
+min-height: 40px;
+}
+.skillUl{
+float: left;
+list-style-type: none;
+margin-left: -25px;
+}
+.placeholderText{
+display: inline-block;
+margin-left: -10px;
+margin-top: 3px;
+color: #AFABAB;
+}
+.doctorData{
+  display: none;
+}
+.nurseData{
+  display: none;
+}
+.schedule{
+  height: 100%;
+}
+.scheduleSearch{
+  display: block;
+  width: 100%;
+  height: 800px;
+  max-height: 800px;
+  overflow: auto;
+}
+.scheduleSearchButton{
+  display: block;
+  height: 20%;
+  width: 100%;
+}
+#calendar {
+  max-width: 100%;
+  min-width: 800px;
+  margin: 40px auto;
+  padding: 0 10px;
+  color: #777777;
+}
+.scheduleRegion{
+  display: block;
+  float: right;
+  width: 97%;
+  height: 100%;
+}
+
+.side_select_content{
+  margin-top: 15px;
+  width: 100%;
+}
+input[type=checkbox]{
+  transform: scale(1.1);
+}
+.ishiCheck{
+  margin-bottom: 7px;
+}
+.checkl{
+  display: inline-block;
+  width: 45%;
+}
+.checkr{
+  display: inline-block;
+  width: 45%;
+}
+.searchButton{
+  width:50px;
+  height:50px;
+  border-radius: 
+  50px;float:right;
+  margin: 10px 20px 0px 0px;
+  border-style: none;
+  background-color: #E2F0D9;
+  color: #548235;
+  font-weight: bold;
+  outline-style: none;
+  cursor: pointer;
+}
+.searchButton:hover{
+  background-color: #edf1ea;
+  color: #71b445;
+}
+.scheduleBody{
+  margin-top: 10px;
+}
+#floatRight{
+  float: right;
+}
+
+.switchInput{
+  visibility: hidden;
+  margin-top: -20px;
+  margin-bottom: -8px;
+}
+.fc-agenda-slots td {
+  height: 40px !important;
+}
+
+/* Slider *
+ * ====== */
+/* ## Slider main element */
+input[type=range] {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  width: 20em;
+  height: 2.3em;
+  border: none;
+  /* background-color: #E8F6F8; */
+  background-image: url("../images/color-E8F6F8.png");
+  background-position: 115px;
+  background-size: 58.5px 40px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s linear;
+  box-shadow: 0 0 0 0 transparent;
+}
+/* input[type=range]:focus {
+  box-shadow: 0 0 0 0.1em #AAAAAA;
+} */
+
+/* ## Orientation tweak, with [orient] attribute in degrees */
+/* > I know it's not standard, but that's the cleaner way I was thinking of. */
+input[type=range][orient] {
+  /* > Would be cool heh :-) : */
+  transform: rotate(attr(orient));
+}
+
+
+
+/* ## Slider components */
+/* ### Slider::-track */
+input[type=range]::-webkit-slider-runnable-track {
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+input[type=range]::-moz-range-track {
+  border: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+input[type=range]::-ms-track {
+  border: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+
+/* ### Slider::-thumb */
+input[type=range]::-webkit-slider-thumb {
+  padding: 0;
+  margin-top: 2.5px;
+  height: 2em;
+  width: 19%;
+  border-radius: 7px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #A1D6E3;
+  z-index: 8;
+  /* box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818; */
+  cursor: ew-resize;
+}
+input[type=range]::-moz-range-thumb {
+  padding: 0;
+  margin-top: 2.5px;
+  height: 1.7em;
+  width: 19%;
+  border-radius: 20px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #6FC5F0;
+  z-index: 8;
+  /* box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818; */
+  cursor: ew-resize;
+}
+input[type=range]::-ms-thumb {
+  padding: 0;
+  margin-top: 2.5px;
+  height: 1.7em;
+  width: 19%;
+  border-radius: 0.1em;
+  box-sizing: border-box;
+  border: none;
+  background-color: #6FC5F0;
+  z-index: 8;
+  /* box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818; */
+  cursor: ew-resize;
+}
+
+/* ## Browser tweaks */
+/* ### webkit */
+input[type=range], input[type=range]::-webkit-slider-runnable-track, input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+/* ### IE */
+input[type=range]::-ms-track {
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper, input[type=range]::-ms-tooltip {
+  display: none;
+}
+
+/* Label *
+ * ====== */
+/* ## Label main element */
+label[type=range] {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: 0.6em;
+  width: 9.9em;
+  height: 1em;
+  border-radius: 0.25em;
+  color: #242424;
+  font-family: arial;
+  border: 0.2em solid transparent;
+  text-align: center;
+  border-bottom-color: #242424;
+  background-image: linear-gradient(#242424 calc(50% - .1em), #242424 calc(50% + .1em));
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 0.2em 0.2em;
+  color: #999;
+}
+label[type=range]:first-letter {
+  font-size: 0.6em;
+}
+label[type=range]::before, label[type=range]::after {
+  display: block;
+  position: absolute;
+  height: 1em;
+  line-height: 1em;
+  width: 1em;
+}
+label[type=range]::before {
+  content: attr(before);
+  left: -0.2em;
+  text-align: left;
+}
+label[type=range]::after {
+  content: attr(after);
+  top: 0;
+  right: -0.2em;
+  text-align: right;
+}
+
+.marginRight{
+  margin-right: 50px;
+}
+.marginLeft{
+  margin-left: 5px;
+}
+
+/* モーダルダイアログ */
+.content{
+  margin: 0 auto;
+  padding: 40px;
+}
+.modal{
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9
+}
+.modalBg{
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+.modalContent{
+  background: #fff;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+  padding: 20px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height : 240px;
+  width: 540px;
+  max-height: 90%;
+  border: 5px;
+  z-index: 11;
+  border-radius: 20px;
+}
+.scrollContent{
+  overflow: auto;
+  max-height: 540px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  width: 540px;
+}
+.draggableHandle{
+  cursor: move;
+  width:105.5%;
+  top:-40px;
+  left:-17px;
+  height: 50px;
+  margin-bottom: -55px;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #AFABAB;
+}
+#modalCloseEvent{
+  cursor: pointer;
+  float: right;
+  margin: 0px 20px 10px 0px;
+  position: relative;
+  z-index: 2;
+}
+/* 時間繰り返しカスタム用モーダルダイアログ */
+.modalRepeat{
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9
+}
+.modalBgRepeat{
+  background: rgba(0,0,0,0.5);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+#modalContentRepeat{
+  background: #fff;
+  left: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height : 350px;
+  width: 300px;
+  border: 5px;
+  z-index: 11;
+  border-radius: 20px;
+}
+#modalCloseEventRepeat{
+  cursor: pointer;
+  float: right;
+  margin: 0px 20px 10px 0px;
+}
+
+.youbiButton{
+  display: inline-block;
+  background-color: #ddd;
+  color: #808080;
+  border-radius: 50px;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none; /* CSS3 */
+  -moz-user-select: none; /* Firefox */
+  -webkit-user-select: none; /* Safari、Chromeなど */
+  -ms-user-select: none; /* IE10かららしい */
+}
+.youbiButtonActive{
+  background-color: #A1D6E3;
+  color: #FFF;
+}
+.inputTextRepeat{
+  display: inline-block;
+  width: 120px;
+}
+.calendarRepeat{
+  font-family:"Meiryo UI";
+  border: solid 0px #e2e2e2;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  padding: 5px;
+  width: 100px;
+  margin-left: 2px;
+}
+
+/* fullcalendar　設定 */
+:root {
+  --fc-small-font-size: .85em;
+  --fc-page-bg-color: #fff;
+  --fc-neutral-bg-color: rgba(208, 208, 208, 0.3);
+  --fc-neutral-text-color: #808080;
+  --fc-border-color: #ddd;
+
+  --fc-button-text-color: #fff;
+  --fc-button-bg-color: #A1D6E3;
+  --fc-button-border-color: #A1D6E3;
+  --fc-button-hover-bg-color: #D2ECF2;
+  --fc-button-hover-border-color: #D2ECF2;
+  --fc-button-active-bg-color: #70B2C2;
+  --fc-button-active-border-color: #70B2C2;
+
+  --fc-event-bg-color: #A1D6E3;
+  --fc-event-border-color: #A1D6E3;
+  --fc-event-text-color: #fff;
+ /* --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25); */
+
+  --fc-event-resizer-thickness: 8px;
+  --fc-event-resizer-dot-total-width: 8px;
+  --fc-event-resizer-dot-border-width: 1px;
+
+  --fc-non-business-color: rgba(215, 215, 215, 0.3);
+  --fc-bg-event-color: rgb(143, 223, 130);
+  --fc-bg-event-opacity: 0.3;
+  --fc-highlight-color: rgba(188, 232, 241, 0.3);
+  --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+  --fc-now-indicator-color: red;
+}
+
+/* サイドメニュー */
+#navTgl {
+  display: none;
+}
+ 
+label.open,
+label.close {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+ 
+.open {
+  z-index: 2;
+  margin-top: 142.5px;
+  width: 50px;
+  height: 50px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  background-color: #F5F5F5;
+  font-size: 2em;
+  line-height: 50px;
+  text-align: center;
+  -webkit-transition: background-color .6s, -webkit-transform .6s;
+  transition: background-color .6s, transform .6s;
+}
+ 
+#navTgl:checked + .open {
+  background-color: #F5F5F5	;
+  -webkit-transform: translateX(355px);
+  transform: translateX(355px);
+}
+ 
+.close {
+  pointer-events: none;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  transition: background-color .6s;
+}
+ 
+/* #navTgl:checked ~ .close {
+  pointer-events: auto;
+  background-color: white;
+} */
+ 
+/* :::::: drawer menu :::::: */
+ 
+.menu {
+  z-index: 2;
+  position: absolute;
+  margin-top: 30px;
+  left: 0;
+  width: 340px;
+  height: 82%;
+  padding: 15px 0px 0px 15px;
+  background-color:#F5F5F5;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: -webkit-transform .6s;
+  transition: transform .6s;
+  border-bottom-right-radius: 5px;
+  -ms-overflow-style: none;    /* IE, Edge 対応 */
+  scrollbar-width: none;       /* Firefox 対応 */
+}
+.menu::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+}
+#navTgl:checked ~ .menu {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+/* 繰り返しの間隔 */
+#per{
+  color: #000;
+  width: 50px;
+}
+#perMonth{
+  color: #000;
+  width: 50px;
+}
+/* モーダル内カテゴリー */
+.doctor{
+  display: none;
+}
+.date{
+  display: none;
+}
+.place{
+  display: none;
+}
+.repeatSelect{
+  display: none;
+}
+.memoDate{
+  display: none;
+}
+.memo{
+  display: none;
+}
+/* datepickerカレンダー */
+.datepickerHere{
+  background-image: linear-gradient(45deg, transparent 50%, rgba(0,0,0,4) 50%), linear-gradient(135deg, rgba(0,0,0,4) 50%, transparent 50%);
+  background-size: 5px 5px, 5px 5px;
+  background-position: calc(100% - 14.7px) 50%, calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+}
+
+.sideSpace{
+  display: none;
+  float: left;
+  width: 430px;
+}
+#jsDatePickerStart{
+  width:100px;
+}
+#jsDatePickerEnd{
+  width:100px;
+}
+#startTime{
+  width:100px;
+}
+
+/* スライドメニュー検索虫眼鏡ボタン */
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+.search {
+  position: absolute;
+  /* margin: auto; */
+  /* top: 510px; */
+  /* right: 0; */
+  /* bottom: 0; */
+  left: 230px;
+  width: 50px;
+  height: 50px;
+  background: #D0CECE;
+  border-radius: 50%;
+  transition: all 1s;
+  /* z-index: 4; */
+  /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 25px 0 crimson; */
+}
+.search:hover {
+    cursor: pointer;
+    background-color: #C0C0C0;
+  }
+  .search::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 20px;
+    width: 10px;
+    height: 4px;
+    background: white;
+    transform: rotate(45deg);
+    transition: all .5s;
+  }
+  .search::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: -5px;
+    right: 0;
+    bottom: 0;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: all .5s;
+  }
+  .modalbutton{
+    margin-left:140px;
+  } 
+  
+.buttonposition1{
+  display: inline-block;
+  width: 83.5%;
+}
